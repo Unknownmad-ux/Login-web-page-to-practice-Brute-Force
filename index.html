@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hacker Login Simulation</title>
+    <style>
+        body { 
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-box {
+            border: 1px solid #0f0;
+            padding: 2rem;
+            box-shadow: 0 0 10px #0f0;
+            width: 300px;
+        }
+        input {
+            background: #111;
+            color: #0f0;
+            border: 1px solid #0f0;
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+        }
+        button {
+            background: #000;
+            color: #0f0;
+            border: 1px solid #0f0;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h1>SECURE SYSTEM LOGIN</h1>
+        <form id="loginForm">
+            <div>
+                <label>USERNAME:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div>
+                <label>PASSWORD:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">ACCESS SYSTEM</button>
+        </form>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        // Hardcoded credentials
+        const validUsers = {
+            "admin": "password123",
+            "bauku": "motku",
+            "hacker": "ethical",
+            "admin": "12345678",
+            "admin": "hello@world"
+            
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (validUsers[username] && validUsers[username] === password) {
+                // Store in sessionStorage for dashboard
+                sessionStorage.setItem('loggedIn', 'true');
+                sessionStorage.setItem('username', username);
+                
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            } else {
+                document.getElementById('status').textContent = "ACCESS DENIED!";
+                document.getElementById('status').style.color = "#f00";
+            }
+        });
+    </script>
+</body>
+</html>

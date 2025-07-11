@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SECURE DASHBOARD</title>
+    <style>
+        body { 
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #0f0;
+            padding: 2rem;
+        }
+        a {
+            color: #0f0;
+            text-decoration: none;
+            border: 1px solid #0f0;
+            padding: 5px 10px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Check authentication
+        if (!sessionStorage.getItem('loggedIn')) {
+            window.location.href = 'index.html';
+        }
+    </script>
+
+    <h1>TOP SECRET DASHBOARD</h1>
+    <p>Welcome, <span id="user"></span>!</p>
+    <p>Access level: <span style="color:#ff0">CLASSIFIED</span></p>
+    <a href="#" onclick="logout()">LOGOUT</a>
+
+    <script>
+        // Show username
+        document.getElementById('user').textContent = sessionStorage.getItem('username');
+        
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
